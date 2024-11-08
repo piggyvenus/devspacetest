@@ -6,4 +6,4 @@ metadata:
 components:
 - name: dev-tools
   container:
-    image: quay.io/cgruver0/che/tiny-workspace
+    image: quay.io/shchan/mytest:latest
