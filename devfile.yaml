@@ -2,47 +2,25 @@ schemaVersion: 2.2.2
 metadata:
   name: conda-hello-world
 components:
-  - name: conda
-    container:
-      image: quay.io/shchan/mytest:latest
-      volumeMounts: # These are the volumes that will be mounted to the container for user conda environments and packet cache
-        - name: envs
-          path: /envs
-        - name: packetcache
-          path: /packet-cache
-      # command:
-      #   - /bin/bash
-      #   - -c
-      #   - |
-      #     /opt/miniforge/bin/conda init bash && source ~/.bashrc
-      cpuRequest: '1'
-      mountSources: true
-  - name: envs
-    volume:
-      size: 5G
-  - name: packetcache
-    volume:
-      size: 5G
-commands:
-- id: configure-conda
-  exec:
-    label: "Configure Conda"
-    component: conda
-    workingDir: /envs
-    commandLine: |
-      /opt/miniforge/bin/conda init bash && \
-      source ~/.bashrc && \
-      conda config --prepend envs_dirs /envs && \
-      conda config --prepend pkgs_dirs /packet-cache && \
-    group:
-      kind: run
-# - id: create-conda-env
-#   exec:
-#     label: "Create and activate Conda environment"
-#     component: conda
-#     workingDir: /envs
-#     commandLine: /opt/miniforge/bin/conda init bash && source ~/.bashrc &&   
-#     conda env create -f environment.yaml && 
-#     conda activate /home/user/envs
-#     group:
-#       kind: run
+- name: conda
+  container:
+    image: quay.io/shchan/mytest:latest
+    volumeMounts:
+    # These are the volumes that will be mounted to the container for user conda environments and packet cache
+    - name: envs
+      path: /envs
+    - name: packetcache
+      path: /packet-cache
+    # command:
+    #   - /bin/bash
+    #   - -c
+    #   - |
+    #     /opt/miniforge/bin/conda init bash && source ~/.bashrc
+    cpuRequest: '1'
+    mountSources: true
+- name: envs
+  volume:
+    size: 5G
+- name: packetcache
+  volume:
+    size: 5G
