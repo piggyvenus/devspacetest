@@ -6,4 +6,4 @@ metadata:
 components:
 - name: dev-tools
   container:
-    image: quay.io/shchan/mytest:latest
+    image: quay.io/shchan/mytest2:latest
