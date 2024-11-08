@@ -1,26 +1,9 @@
-schemaVersion: 2.2.2
+schemaVersion: 2.2.0
+attributes:
+  controller.devfile.io/storage-type: per-workspace
 metadata:
-  name: conda-hello-world
+  name: tiny-workspace
 components:
-- name: conda
+- name: dev-tools
   container:
-    image: quay.io/shchan/mytest:latest
-    volumeMounts:
-    # These are the volumes that will be mounted to the container for user conda environments and packet cache
-    - name: envs
-      path: /envs
-    - name: packetcache
-      path: /packet-cache
-    # command:
-    #   - /bin/bash
-    #   - -c
-    #   - |
-    #     /opt/miniforge/bin/conda init bash && source ~/.bashrc
-    cpuRequest: '1'
-    mountSources: true
-- name: envs
-  volume:
-    size: 5G
-- name: packetcache
-  volume:
-    size: 5G
+    image: quay.io/cgruver0/che/tiny-workspace
